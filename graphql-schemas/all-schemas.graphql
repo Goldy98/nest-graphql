@@ -1,0 +1,77 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Owner {
+  id: Int!
+  name: String!
+  gender: Gender!
+  pets: [Pet!]
+}
+
+"""The differents gender of pets"""
+enum Gender {
+  Male
+  Female
+  Other
+}
+
+type Pet {
+  id: Int!
+  name: String!
+  type: PetType!
+  gender: Gender!
+  age: Int
+  ownerId: Int!
+  owner: Owner!
+}
+
+"""The differents type of pets"""
+enum PetType {
+  Dogs
+  Cats
+  Snake
+}
+
+type Query {
+  owners: [Owner!]!
+  owner(id: Int!): Owner!
+  pets: [Pet!]!
+  pet(id: Int!): Pet!
+}
+
+type Mutation {
+  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  removeOwner(id: Int!): Owner!
+  createPet(createPetInput: CreatePetInput!): Pet!
+  updatePet(updatePetInput: UpdatePetInput!): Pet!
+}
+
+input CreateOwnerInput {
+  name: String!
+  gender: Gender!
+}
+
+input UpdateOwnerInput {
+  name: String
+  gender: Gender
+  id: Int!
+}
+
+input CreatePetInput {
+  name: String!
+  type: PetType!
+  gender: Gender!
+  age: Int
+  ownerId: Int!
+}
+
+input UpdatePetInput {
+  name: String
+  type: PetType
+  gender: Gender
+  age: Int
+  ownerId: Int
+  id: Int!
+}
